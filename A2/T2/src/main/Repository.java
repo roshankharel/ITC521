@@ -34,8 +34,4 @@ public class Repository {
     public ArrayList<Point> getPoints() {
         return points;
     }
-
-    public static void main(String[] args) {
-        Window.launch(args);
-    }
 }

@@ -98,4 +98,8 @@ public class Window extends Application {
 
         return pane;
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
