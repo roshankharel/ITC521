@@ -124,11 +124,9 @@ public class Window extends Application {
             // set a generic title
             alert.setTitle("Warning");
             // set header
-            alert.setHeaderText("Points empty.");
+            alert.setHeaderText("Points file unreadable or empty.");
             // set the main content
-            alert.setContentText("Either points file does not exist or its empty or" +
-                    "contains only malformed lines."
-            );
+            alert.setContentText("Either points file does not exist or its empty");
 
             // wait for it to close
             alert.showAndWait();
