@@ -27,9 +27,9 @@ function getDir(src = sourceDir) {
     source = src;
     const bin = path.join(src, "../bin");
 
-    if (!fs.statSync(bin).isDirectory()) {
-        fs.mkdirSync(bin);
-    }
+    // if (!fs.statSync(bin).isDirectory()) {
+    //     fs.mkdirSync(bin);
+    // }
 
     return { source, bin };
 }
