@@ -1,11 +1,20 @@
 package main;
 
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 import java.util.Random;
 
+/**
+ * ColorSet
+ * The ColorSet class provides method to randomly
+ * generate color from the list of colors
+ *
+ * @author Roshan Kharel
+ */
 public class ColorSet {
+    /**
+     * Holds predefined array of HEX color values
+     */
     private static final String[] HEX_COLORS = {
             "#F44336",
             "#E91E63",
@@ -26,12 +35,25 @@ public class ColorSet {
             "#FF5722"
     };
 
+    /**
+     * Holds random number generator
+     */
     private static final Random RANDOM = new Random();
 
-    public static Paint random() {
+    /**
+     * The method allows to get random color from predetermined array of colors
+     *
+     * @return Color
+     */
+    public static Color getRandomColor() {
+
+        // generate a random integer between 0 to the length of the colors array
         int colorIndex = RANDOM.nextInt(HEX_COLORS.length);
+
+        // get the random hex color for the array
         String hex = HEX_COLORS[colorIndex];
 
+        // parse to Color object and return it
         return Color.web(hex);
     }
 }
