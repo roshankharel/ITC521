@@ -83,7 +83,7 @@ public class Validator {
         validateRequired(year, fieldName);
         validatePositive(year, fieldName);
 
-        if (year.trim().length() != 4) {
+        if (BigInteger.valueOf(Long.parseLong(year)).toString().length() != 4) {
             throw new YearFormatError(year, fieldName);
         }
     }
