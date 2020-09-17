@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -115,10 +116,27 @@ public class Window extends Application {
         primaryStage.setResizable(true);
         // make stage visible
         primaryStage.show();
+
+        // show alert if there are no points to render on screen
+        if (pointRepository.getPoints().size() == 0) {
+            // create a warning alert
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            // set a generic title
+            alert.setTitle("Warning");
+            // set header
+            alert.setHeaderText("Points empty.");
+            // set the main content
+            alert.setContentText("Either points file does not exist or its empty or" +
+                    "contains only malformed lines."
+            );
+
+            // wait for it to close
+            alert.showAndWait();
+        }
     }
 
     /**
-     * Returns Pane object with drawn triangles as children for the scene
+     * Returns Pane object with positioned circles as children for the scene
      *
      * @return Pane
      */
