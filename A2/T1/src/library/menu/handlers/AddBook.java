@@ -9,9 +9,6 @@ import library.entities.Book;
 import java.math.BigInteger;
 
 public class AddBook implements IMenuOptionHandler {
-    public static final int Order = 1;
-    public static final String Description = "Add a new book";
-
     @Override
     public void dispatch() {
         String title = KeyboardInput.getTitle();

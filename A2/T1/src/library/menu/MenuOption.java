@@ -53,14 +53,12 @@ public class MenuOption implements IMenuOption {
      */
     @Override
     public void addDispatcher(IMenuOptionHandler dispatcher) {
-        this.dispatcher = dispatcher;
+        if (dispatcher != null) this.dispatcher = dispatcher;
     }
 
-    /**
-     * Trigger menu option selection event
-     */
+    /** Trigger menu option selection event */
     @Override
     public void select() {
-        this.dispatcher.dispatch();
+        if (dispatcher != null) dispatcher.dispatch();
     }
 }

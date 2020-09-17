@@ -2,7 +2,6 @@ package library;
 
 import library.entities.Book;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +10,9 @@ import java.util.ArrayList;
 public class Persistence {
     public static final Path PersistenceLocation = Paths.get("library.obj");
 
-    public static ArrayList<Book> loadBooks() {
+    public static ArrayList<Book> readBooks() {
+        ArrayList<Book> books = new ArrayList<>();
+
         try {
             File libraryFile = makeOrGetFile();
 
@@ -19,7 +20,19 @@ public class Persistence {
 
             FileInputStream fileInputStream = new FileInputStream(libraryFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            ArrayList<Book> books = (ArrayList<Book>) objectInputStream.readObject();
+
+            Object readObject = objectInputStream.readObject();
+
+            // check readObject is instance of ArrayList<?> generics
+            if(readObject instanceof ArrayList<?>) {
+                for (Object o : (ArrayList<?>) readObject) {
+                    // check o is instance of Book
+                    if(o instanceof Book) {
+                        // append the book to the list
+                        books.add((Book) o);
+                    }
+                }
+            }
 
             objectInputStream.close();
 

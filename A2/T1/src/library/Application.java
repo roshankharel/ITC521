@@ -13,16 +13,16 @@ import java.util.Scanner;
 
 /** @author Roshan Kharel (11691041) */
 public class Application {
+    private static Application instance;
+
     protected Menu menu;
     protected BookRepository bookRepository;
     public static final Scanner Keyboard = new Scanner(System.in);
-    protected static Application instance;
 
     /** no-arguments default constructor */
     private Application() {
         bookRepository = new BookRepository();
         menu = new Menu(Const.Menu.Heading.Application);
-        //        fillData();
     }
 
     public static Application ctx() {
@@ -31,6 +31,7 @@ public class Application {
         return instance;
     }
 
+    @SuppressWarnings("unused")
     private void fillData() {
         bookRepository.addBook(
                 new Book(
@@ -115,7 +116,7 @@ public class Application {
     }
 
     public void loadBooks() {
-        ArrayList<Book> books = Persistence.loadBooks();
+        ArrayList<Book> books = Persistence.readBooks();
 
         if (books != null) bookRepository.addBooks(books);
     }

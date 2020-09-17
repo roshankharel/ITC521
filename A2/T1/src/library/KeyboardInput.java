@@ -1,14 +1,15 @@
 package library;
 
+import library.validation.Validator;
+import library.validation.errors.FieldRequiredError;
+
 import java.math.BigInteger;
-import java.util.function.Function;
 
 public class KeyboardInput {
     public static final String FieldTitle = "Title";
     public static final String FieldAuthor = "Author";
     public static final String FieldYear = "Published Year";
     public static final String FieldISBN = "ISBN";
-    public static final String FieldSearchCriteria = "Search Criteria";
     public static final String FieldMenuOption = "Option";
     public static final String FieldBookNumber = "Book Number";
 
@@ -19,12 +20,20 @@ public class KeyboardInput {
      */
     public static String getTitle() {
         String value;
+        boolean isValid = false;
 
         // ask for the book title
         do {
             System.out.print("Title of the book: ");
             value = Application.Keyboard.nextLine().trim();
-        } while (!InputValidator.validateRequired(value, FieldTitle));
+
+            try {
+                Validator.validateRequired(value, FieldTitle);
+                isValid = true;
+            } catch (FieldRequiredError e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isValid);
 
         return value;
     }
@@ -36,12 +45,21 @@ public class KeyboardInput {
      */
     public static String getAuthor() {
         String value;
+        boolean isValid = false;
 
         // ask for the book author
         do {
             System.out.print("Author of the book: ");
             value = Application.Keyboard.nextLine().trim();
-        } while (!InputValidator.validateRequired(value, FieldAuthor));
+
+            try {
+                Validator.validateRequired(value, FieldAuthor);
+                isValid = true;
+            } catch (FieldRequiredError e) {
+                System.out.println(e.getMessage());
+            }
+
+        } while (!isValid);
 
         return value;
     }
@@ -53,19 +71,20 @@ public class KeyboardInput {
      */
     public static int getYear() {
         String value;
-
-        Function<String, Boolean> isValid =
-                (String input) ->
-                        InputValidator.validateRequired(input, FieldYear)
-                                && InputValidator.validateInteger(input, FieldYear)
-                                && InputValidator.validatePositive(Integer.parseInt(input), FieldYear)
-                                && InputValidator.validateLength(Integer.parseInt(input), 4, FieldYear);
+        boolean isValid = false;
 
         // ask for the book published year
         do {
             System.out.print("Year of publication: ");
             value = Application.Keyboard.nextLine().trim();
-        } while (!isValid.apply(value));
+
+            try {
+                Validator.validateYear(value, FieldYear);
+                isValid = true;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isValid);
 
         return Integer.parseInt(value);
     }
@@ -77,23 +96,20 @@ public class KeyboardInput {
      */
     public static BigInteger getISBN() {
         String value;
-
-        Function<String, Boolean> isValid =
-                (String input) -> {
-                    if (!InputValidator.validateRequired(input, FieldISBN)
-                            || !InputValidator.validateBigInteger(input, FieldISBN)) return false;
-
-                    BigInteger isbn = BigInteger.valueOf(Long.parseLong(input));
-
-                    return InputValidator.validatePositive(isbn, FieldISBN)
-                            && InputValidator.validateISBNLength(isbn, FieldISBN);
-                };
+        boolean isValid = false;
 
         // ask for the book isbn
         do {
             System.out.print("ISBN number: ");
             value = Application.Keyboard.nextLine().trim();
-        } while (!isValid.apply(value));
+
+            try {
+                Validator.validateISBN(value, FieldISBN);
+                isValid = true;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isValid);
 
         return BigInteger.valueOf(Long.parseLong(value));
     }
@@ -108,30 +124,22 @@ public class KeyboardInput {
      */
     protected static int getFromOptions(int[] options, String ask, String fieldName) {
         String value;
-
-        Function<String, Boolean> isValid =
-                (String input) ->
-                        InputValidator.validateRequired(input, fieldName)
-                                && InputValidator.validateInteger(input, fieldName)
-                                && InputValidator.validateInArray(Integer.parseInt(input), options);
+        boolean isValid = false;
 
         // ask for the choice
         do {
             System.out.printf("%s: ", ask);
             value = Application.Keyboard.nextLine().trim();
-        } while (!isValid.apply(value));
+
+            try{
+                Validator.validateInOptions(value, options, fieldName);
+                isValid = true;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isValid);
 
         return Integer.parseInt(value);
-    }
-
-    /**
-     * Ask user to make choice from given options
-     *
-     * @param options array of options to choose from
-     * @return choice from the options
-     */
-    public static int getSearchByCriteria(int[] options) {
-        return getFromOptions(options, "Choose search-by criteria", FieldSearchCriteria);
     }
 
     /**

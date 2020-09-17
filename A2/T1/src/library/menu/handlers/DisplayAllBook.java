@@ -12,7 +12,7 @@ public class DisplayAllBook implements IMenuOptionHandler {
     public void dispatch() {
         ArrayList<Book> books = Application.ctx().getBookRepository().getBooks();
 
-        if(books.size() == 0) {
+        if (books.size() == 0) {
             System.out.println(Const.Message.Info.NO_BOOKS);
             return;
         }

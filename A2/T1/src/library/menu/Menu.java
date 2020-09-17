@@ -12,9 +12,7 @@ public class Menu implements IMenu {
     protected int[] menuOptionIdsCache = null;
     protected HashMap<Integer, IMenuOption> options = new HashMap<>();
 
-    /**
-     * @param heading The heading for the console menu
-     */
+    /** @param heading The heading for the console menu */
     public Menu(String heading) {
         setHeading(heading);
     }

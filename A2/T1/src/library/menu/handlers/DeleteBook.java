@@ -1,11 +1,11 @@
 package library.menu.handlers;
 
-import library.Const;
-import library.menu.Menu;
 import library.Application;
+import library.Const;
 import library.KeyboardInput;
-import library.entities.Book;
 import library.contracts.IMenuOption.IMenuOptionHandler;
+import library.entities.Book;
+import library.menu.Menu;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;

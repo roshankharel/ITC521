@@ -3,8 +3,8 @@ package library.menu.handlers;
 import library.Application;
 import library.Const;
 import library.KeyboardInput;
-import library.contracts.IMenuOption.IMenuOptionHandler;
 import library.contracts.IMenuOption;
+import library.contracts.IMenuOption.IMenuOptionHandler;
 import library.entities.Book;
 import library.menu.Menu;
 import library.menu.MenuOption;
@@ -31,33 +31,26 @@ public class SearchBook implements IMenuOptionHandler {
 
     protected void registerMenuOptions(Consumer<Integer> onSelection) {
         IMenuOption[] options =
-            new IMenuOption[] {
-                new MenuOption(
-                    Const.Menu.Order.CANCEL_ACTION,
-                    Const.Menu.Description.CANCEL_ACTION,
-                    () -> {}
-                ),
-                new MenuOption(
-                    Const.Menu.Order.BY_TITLE,
-                    Const.Menu.Description.BY_TITLE,
-                    () -> onSelection.accept(Const.Menu.Order.BY_TITLE)
-                ),
-                new MenuOption(
-                    Const.Menu.Order.BY_AUTHOR,
-                    Const.Menu.Description.BY_AUTHOR,
-                    () -> onSelection.accept(Const.Menu.Order.BY_AUTHOR)
-                ),
-                new MenuOption(
-                    Const.Menu.Order.BY_YEAR,
-                    Const.Menu.Description.BY_YEAR,
-                    () -> onSelection.accept(Const.Menu.Order.BY_YEAR)
-                ),
-                new MenuOption(
-                    Const.Menu.Order.BY_ISBN,
-                    Const.Menu.Description.BY_ISBN,
-                    () -> onSelection.accept(Const.Menu.Order.BY_ISBN)
-                ),
-            };
+                new IMenuOption[] {
+                        new MenuOption(
+                                Const.Menu.Order.CANCEL_ACTION, Const.Menu.Description.CANCEL_ACTION, null),
+                        new MenuOption(
+                                Const.Menu.Order.BY_TITLE,
+                                Const.Menu.Description.BY_TITLE,
+                                () -> onSelection.accept(Const.Menu.Order.BY_TITLE)),
+                        new MenuOption(
+                                Const.Menu.Order.BY_AUTHOR,
+                                Const.Menu.Description.BY_AUTHOR,
+                                () -> onSelection.accept(Const.Menu.Order.BY_AUTHOR)),
+                        new MenuOption(
+                                Const.Menu.Order.BY_YEAR,
+                                Const.Menu.Description.BY_YEAR,
+                                () -> onSelection.accept(Const.Menu.Order.BY_YEAR)),
+                        new MenuOption(
+                                Const.Menu.Order.BY_ISBN,
+                                Const.Menu.Description.BY_ISBN,
+                                () -> onSelection.accept(Const.Menu.Order.BY_ISBN)),
+                };
 
         menu.addOptions(options);
     }
@@ -76,7 +69,7 @@ public class SearchBook implements IMenuOptionHandler {
 
         displayBooks(books, next != null);
 
-        if(next != null) next.accept(books);
+        if (next != null) next.accept(books);
     }
 
     protected ArrayList<Book> searchBooks(BookRepository repository, int searchBy) {
@@ -125,8 +118,7 @@ public class SearchBook implements IMenuOptionHandler {
 
         for (Book book : books) {
             System.out.println(
-                    (numbered ? ("\nBook #" + idx++ + "\n") : "\n") + book.prettyStringRepresentation()
-            );
+                    (numbered ? ("\nBook #" + idx++ + "\n") : "\n") + book.prettyStringRepresentation());
         }
     }
 

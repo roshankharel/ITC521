@@ -1,5 +1,6 @@
 package library;
 
+
 public final class Const {
     private Const() {}
 
@@ -12,9 +13,9 @@ public final class Const {
         public static class Heading {
             private Heading() {}
 
-            public static final String Application = "Please select one of the following options:";
-            public static final String SearchBook = "Search for a book by:";
-            public static final String SearchBookDeletion = "Search a book for deletion by:";
+            public static final String Application = "Please select one of the following options";
+            public static final String SearchBook = "Search for a book by";
+            public static final String SearchBookDeletion = "Search a book for deletion by";
         }
 
         public static class Order {
@@ -83,11 +84,11 @@ public final class Const {
             private Validation() {}
 
             public static final String REQUIRED = "Error: %s field cannot be blank or only whitespace(s).";
-            public static final String POSITIVE_INT = "Error: %s must be a positive integer.";
-            public static final String INT = "Error: %s must be an integer.";
-            public static final String ISBN = "Error: %s field must be less than or equal 10, or exactly 13 digits number.";
-            public static final String DEFINED_LENGTH = "Error: %s field must be of %s digit number.";
+            public static final String POSITIVE_INT = "Error: %s field must be a positive integer, '%s' given.";
+            public static final String INT = "Error: %s field must be an integer, '%s' given.";
+            public static final String ISBN = "Error: %s field is not in valid ISBN format i.e 10 digit number, '%s' given.";
             public static final String IN_RANGE = "Error: Please select from available options %s.";
+            public static final String YEAR = "Error: %s field must be of 4 digit number with no leading zeros, '%s' given.";
         }
     }
 }
