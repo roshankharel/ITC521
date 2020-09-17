@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DisplayAllBook implements IMenuOptionHandler {
     @Override
     public void dispatch() {
-        ArrayList<Book> books = Application.ctx().getBookRepository().getBooks();
+        ArrayList<Book> books = Application.getInstance().getBookRepository().getBooks();
 
         if (books.size() == 0) {
             System.out.println(Const.Message.Info.NO_BOOKS);

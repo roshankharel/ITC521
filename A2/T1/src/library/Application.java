@@ -9,23 +9,37 @@ import library.repositories.BookRepository;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-/** @author Roshan Kharel (11691041) */
+/**
+ * The Application program is a library program that allows its
+ * users to manage various unlimited books.
+ *
+ * @author Roshan Kharel
+ * @version 1.0
+ * @since 2020/09/15
+ */
 public class Application {
     private static Application instance;
 
     protected Menu menu;
     protected BookRepository bookRepository;
-    public static final Scanner Keyboard = new Scanner(System.in);
 
-    /** no-arguments default constructor */
+    /**
+     * no-arguments default private constructor, follows singleton pattern
+     */
     private Application() {
         bookRepository = new BookRepository();
-        menu = new Menu(Const.Menu.Heading.Application);
+        menu = new Menu(Const.Menu.Heading.MAIN_MENU);
+
+        bootstrap();
     }
 
-    public static Application ctx() {
+    /**
+     * The method to let access to same instance object of this class
+     *
+     * @return Application instance
+     */
+    public static Application getInstance() {
         if(instance == null) instance = new Application();
 
         return instance;
@@ -62,11 +76,13 @@ public class Application {
                         BigInteger.valueOf(Long.parseLong("1676957444"))));
     }
 
-    public Application bootstrap() {
+    /**
+     * Internal method to run required methods before the application
+     * prompt is visible
+     */
+    private Application bootstrap() {
         loadBooks();
         registerMenuOptions();
-
-//        fillData();
 
         return this;
     }
@@ -104,17 +120,29 @@ public class Application {
         menu.addOptions(options);
     }
 
+    /**
+     * The main application loop that keeps the application running
+     */
     public void run() {
+        // runs indefinitely until exit signal is received
         while (true) {
             System.out.printf("\n%s\n\n", Const.GREETING);
             menu.display().awaitOptionSelection();
         }
     }
 
+    /**
+     * Get book repository
+     *
+     * @return BookRepository instance
+     */
     public BookRepository getBookRepository() {
         return bookRepository;
     }
 
+    /**
+     * Method to load books from file persistence to runtime memory
+     */
     public void loadBooks() {
         ArrayList<Book> books = Persistence.readBooks();
 
@@ -123,6 +151,6 @@ public class Application {
 
     /** @param args program arguments */
     public static void main(String[] args) {
-        Application.ctx().bootstrap().run();
+        Application.getInstance().bootstrap().run();
     }
 }

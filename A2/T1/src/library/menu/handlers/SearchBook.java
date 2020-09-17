@@ -20,7 +20,7 @@ public class SearchBook implements IMenuOptionHandler {
     protected Menu menu;
 
     public SearchBook() {
-        menu = new Menu(Const.Menu.Heading.SearchBook);
+        menu = new Menu(Const.Menu.Heading.SEARCH_BOOK_MENU);
         registerMenuOptions(this::searchBy);
     }
 
@@ -60,7 +60,7 @@ public class SearchBook implements IMenuOptionHandler {
     }
 
     protected void searchBy(int searchBy, Consumer<ArrayList<Book>> next) {
-        ArrayList<Book> books = searchBooks(Application.ctx().getBookRepository(), searchBy);
+        ArrayList<Book> books = searchBooks(Application.getInstance().getBookRepository(), searchBy);
 
         if (books.size() == 0) {
             noMatchFound();

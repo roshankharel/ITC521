@@ -17,7 +17,7 @@ public class AddBook implements IMenuOptionHandler {
         BigInteger isbn = KeyboardInput.getISBN();
 
         Book book = new Book(title, author, publishedYear, isbn);
-        Application.ctx().getBookRepository().addBook(book);
+        Application.getInstance().getBookRepository().addBook(book);
 
         System.out.println(Const.Message.Success.ADD_BOOK);
     }

@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class DeleteBook extends SearchBook implements IMenuOptionHandler {
     public DeleteBook() {
-        menu = new Menu(Const.Menu.Heading.SearchBookDeletion);
+        menu = new Menu(Const.Menu.Heading.SEARCH_BOOK_FOR_DELETION_MENU);
         registerMenuOptions(selection -> this.searchBy(selection, this::deleteBook));
     }
 
@@ -22,6 +22,6 @@ public class DeleteBook extends SearchBook implements IMenuOptionHandler {
         Book book = filteredBooks.get(idx);
 
         System.out.println("Success: The selected book has been deleted.");
-        Application.ctx().getBookRepository().deleteBook(book);
+        Application.getInstance().getBookRepository().deleteBook(book);
     }
 }

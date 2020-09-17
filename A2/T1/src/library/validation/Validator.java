@@ -5,14 +5,21 @@ import library.validation.errors.*;
 
 import java.math.BigInteger;
 
+/**
+ * Validator
+ * The Validator class abstracts away the mechanism of validating various
+ * user inputs required throughout the program.
+ *
+ * @author Roshan Kharel
+ */
 public class Validator {
     /**
-     * Method validated that required field's value is not empty string.
+     * Method validates that required field's value is not empty string.
      * The method trims the value before validation
      *
-     * @param value
-     *              string to be validated
+     * @param value string to be validated
      * @param fieldName the name of the input field
+     *
      * @throws FieldRequiredError if the length of supplied value is zero after trimming whitespace
      */
     public static void validateRequired(String value, String fieldName) throws FieldRequiredError {
@@ -22,10 +29,12 @@ public class Validator {
     }
 
     /**
-     * Method validated that required field's value is parsable to integer
+     * Method validates that supplied field's value is parsable to integer or BigInteger
      *
      * @param value value to be validated
      * @param fieldName the name of the input field
+     *
+     * @throws NumberFormatException if the value is not an integer
      */
     public static void validateInteger(String value, String fieldName) throws NumberFormatException {
         try {
@@ -43,10 +52,13 @@ public class Validator {
     }
 
     /**
-     * Check if supplied value is a positive integer and throw error if the validation fails
+     * Method validates that supplied field's value is parsable to integer or BigInteger
+     * and has positive sign
      *
      * @param value value to be validated
      * @param fieldName the name of the input field
+     *
+     * @throws RuntimeException if the value is not positive integer
      */
     public static void validatePositive(String value, String fieldName) throws NegativeIntegerError {
         validateInteger(value, fieldName);
@@ -59,9 +71,11 @@ public class Validator {
     }
 
     /**
-     * Check if supplied value is a valid ISBN number and throw error when validation fails
+     * Method validates that supplied field's value is an ISBN number
      *
      * @param isbn isbn number to be validated
+     *
+     * @throws RuntimeException if the value is not 10 digit positive ISBN number
      */
     public static void validateISBN(String isbn, String fieldName)
             throws ISBNFormatError, FieldRequiredError, NumberFormatException, NegativeIntegerError {
@@ -74,9 +88,10 @@ public class Validator {
     }
 
     /**
-     * Check if supplied value is a valid year and throw error when validation fails
+     * Method validates that supplied field's value is a 4-digit number
      *
      * @param year year to be validated
+     * @throws RuntimeException if the value is not 4 digit positive number
      */
     public static void validateYear(String year, String fieldName)
             throws YearFormatError, FieldRequiredError, NumberFormatException {
@@ -89,11 +104,12 @@ public class Validator {
     }
 
     /**
-     * Check if supplied value exists in the provided array of options and shows error message if the
-     * validation fails
+     * Method validates if the value is within the provided array of integers
      *
      * @param value input to be validated
      * @param options list of available options
+     *
+     * @throws RuntimeException if the value is not in the options array
      */
     public static void validateInOptions(String value, int[] options, String fieldName)
             throws NumberFormatException, OptionNotInRange {

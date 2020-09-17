@@ -4,14 +4,18 @@ import library.validation.Validator;
 import library.validation.errors.FieldRequiredError;
 
 import java.math.BigInteger;
+import java.util.Scanner;
 
+/**
+ * KeyboardInput The KeyboardInput class simply provides methods get predefined types of input that
+ * are guaranteed to be valid.
+ *
+ * @author Roshan Kharel
+ */
 public class KeyboardInput {
-    public static final String FieldTitle = "Title";
-    public static final String FieldAuthor = "Author";
-    public static final String FieldYear = "Published Year";
-    public static final String FieldISBN = "ISBN";
-    public static final String FieldMenuOption = "Option";
-    public static final String FieldBookNumber = "Book Number";
+
+    /** The "standard" input stream. This stream is already * open and ready to supply input data */
+    public static final Scanner Keyboard = new Scanner(System.in);
 
     /**
      * Ask user for book title
@@ -25,10 +29,10 @@ public class KeyboardInput {
         // ask for the book title
         do {
             System.out.print("Title of the book: ");
-            value = Application.Keyboard.nextLine().trim();
+            value = Keyboard.nextLine().trim();
 
             try {
-                Validator.validateRequired(value, FieldTitle);
+                Validator.validateRequired(value, Const.FieldName.TITLE);
                 isValid = true;
             } catch (FieldRequiredError e) {
                 System.out.println(e.getMessage());
@@ -50,10 +54,10 @@ public class KeyboardInput {
         // ask for the book author
         do {
             System.out.print("Author of the book: ");
-            value = Application.Keyboard.nextLine().trim();
+            value = Keyboard.nextLine().trim();
 
             try {
-                Validator.validateRequired(value, FieldAuthor);
+                Validator.validateRequired(value, Const.FieldName.AUTHOR);
                 isValid = true;
             } catch (FieldRequiredError e) {
                 System.out.println(e.getMessage());
@@ -76,10 +80,10 @@ public class KeyboardInput {
         // ask for the book published year
         do {
             System.out.print("Year of publication: ");
-            value = Application.Keyboard.nextLine().trim();
+            value = Keyboard.nextLine().trim();
 
             try {
-                Validator.validateYear(value, FieldYear);
+                Validator.validateYear(value, Const.FieldName.PUBLISHED_YEAR);
                 isValid = true;
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
@@ -101,10 +105,10 @@ public class KeyboardInput {
         // ask for the book isbn
         do {
             System.out.print("ISBN number: ");
-            value = Application.Keyboard.nextLine().trim();
+            value = Keyboard.nextLine().trim();
 
             try {
-                Validator.validateISBN(value, FieldISBN);
+                Validator.validateISBN(value, Const.FieldName.ISBN);
                 isValid = true;
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
@@ -129,9 +133,9 @@ public class KeyboardInput {
         // ask for the choice
         do {
             System.out.printf("%s: ", ask);
-            value = Application.Keyboard.nextLine().trim();
+            value = Keyboard.nextLine().trim();
 
-            try{
+            try {
                 Validator.validateInOptions(value, options, fieldName);
                 isValid = true;
             } catch (RuntimeException e) {
@@ -149,7 +153,7 @@ public class KeyboardInput {
      * @return choice from the options
      */
     public static int getMenuOptionId(int[] options) {
-        return getFromOptions(options, "Enter a menu option", FieldMenuOption);
+        return getFromOptions(options, "Enter a menu option", Const.FieldName.OPTION);
     }
 
     /**
@@ -159,6 +163,6 @@ public class KeyboardInput {
      * @return chosen book index
      */
     public static int getBookNumber(int[] options) {
-        return getFromOptions(options, "Enter a Book number", FieldBookNumber);
+        return getFromOptions(options, "Enter a Book number", Const.FieldName.BOOK_NUMBER);
     }
 }

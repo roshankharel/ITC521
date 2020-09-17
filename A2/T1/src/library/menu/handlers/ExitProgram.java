@@ -2,6 +2,7 @@ package library.menu.handlers;
 
 import library.Application;
 import library.Const;
+import library.KeyboardInput;
 import library.Persistence;
 import library.contracts.IMenuOption.IMenuOptionHandler;
 import library.entities.Book;
@@ -15,7 +16,7 @@ public class ExitProgram implements IMenuOptionHandler {
         try {
             System.out.println(Const.Message.Info.SAVING_BOOKS);
 
-            ArrayList<Book> books = Application.ctx().getBookRepository().getBooks();
+            ArrayList<Book> books = Application.getInstance().getBookRepository().getBooks();
             Persistence.saveBooks(books);
         } catch (IOException e) {
             e.printStackTrace();
@@ -24,7 +25,7 @@ public class ExitProgram implements IMenuOptionHandler {
 
         System.out.println(Const.Message.FAREWELL);
         // release input stream resources
-        Application.Keyboard.close();
+        KeyboardInput.Keyboard.close();
         System.exit(0);
     }
 }

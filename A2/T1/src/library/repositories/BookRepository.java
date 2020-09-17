@@ -6,7 +6,13 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
-
+/**
+ * BookRepository
+ * The BookRepository class provides methods to manage, query, and filter
+ * books based on various attributes of Book object.
+ *
+ * @author Roshan Kharel
+ */
 public class BookRepository {
     protected ArrayList<Book> books;
 
