@@ -14,6 +14,31 @@ import java.util.HashMap;
  */
 public class EventBus {
     /**
+     * Types of custom events that a subsystem can listen on
+     */
+    public enum EventType {
+        MOUSE_ENTERED,
+        MOUSE_EXITED,
+        DRAGGING,
+    }
+
+    /**
+     * IEventListener
+     * A contract all event listeners must implement
+     */
+    public interface IEventListener {
+        /**
+         * This method is invoked when the subscribed EventType is triggered
+         *
+         * @param event the original event
+         * @param point the Point object that triggered the event
+         * @see Event
+         * @see Point
+         */
+        void dispatch(Event event, Point point);
+    }
+
+    /**
      * Holds reference to the instance object of this class
      */
     private static EventBus eventBus;
@@ -73,30 +98,5 @@ public class EventBus {
 
         // dispatch the event
         listeners.get(eventType).dispatch(event, point);
-    }
-
-    /**
-     * Types of custom events that a subsystem can listen on
-     */
-    public enum EventType {
-        MOUSE_ENTERED,
-        MOUSE_EXITED,
-        DRAGGING,
-    }
-
-    /**
-     * IEventListener
-     * A contract all event listeners must implement
-     */
-    public interface IEventListener {
-        /**
-         * This method is invoked when the subscribed EventType is triggered
-         *
-         * @param event the original event
-         * @param point the Point object that triggered the event
-         * @see Event
-         * @see Point
-         */
-        void dispatch(Event event, Point point);
     }
 }

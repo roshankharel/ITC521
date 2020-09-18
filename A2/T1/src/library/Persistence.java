@@ -2,7 +2,6 @@ package library;
 
 import library.entities.Book;
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class Persistence {
     /**
      * Holds reference to the path of the library file
      */
-    public static final Path PersistenceLocation = Paths.get("library.obj");
+    public static final Path PERSISTENCE_LOCATION = Paths.get("library.obj");
 
     /**
      * The method to read binary file and convert to ArrayList of Book objects
@@ -95,12 +94,13 @@ public class Persistence {
      *                     or unable to determine if file exists
      */
     protected static File makeOrGetFile() throws IOException {
-        // check if file exists
-        if(!Files.exists(PersistenceLocation)) {
+        File libraryFile = PERSISTENCE_LOCATION.toFile();
+        // check if file exists and is a file
+        if(!libraryFile.exists() || !libraryFile.isFile()) {
             // create new file if points file does not exists
-            Files.createFile(PersistenceLocation);
+            libraryFile.createNewFile();
         }
 
-        return PersistenceLocation.toFile();
+        return libraryFile;
     }
 }

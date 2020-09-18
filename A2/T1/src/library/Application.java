@@ -6,13 +6,11 @@ import library.menu.Menu;
 import library.menu.MenuOption;
 import library.menu.handlers.*;
 import library.repositories.BookRepository;
-
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
  * The Application program is a library program that allows its
- * users to manage various unlimited books.
+ * users to manage various books.
  *
  * @author Roshan Kharel
  * @version 1.0
@@ -45,46 +43,13 @@ public class Application {
         return instance;
     }
 
-    @SuppressWarnings("unused")
-    private void fillData() {
-        bookRepository.addBook(
-                new Book(
-                        "A day in the country",
-                        "Anne Preston",
-                        2001,
-                        BigInteger.valueOf(Long.parseLong("7488796045"))));
-        bookRepository.addBook(
-                new Book(
-                        "Last light", "Alex Sparrow", 2007, BigInteger.valueOf(Long.parseLong("991145598"))));
-        bookRepository.addBook(
-                new Book(
-                        "Nineteen eighty four",
-                        "George Orwell",
-                        1984,
-                        BigInteger.valueOf(Long.parseLong("1991145592"))));
-        bookRepository.addBook(
-                new Book(
-                        "Nineteen eighty four",
-                        "George Orwell",
-                        1986,
-                        BigInteger.valueOf(Long.parseLong("2991145592"))));
-        bookRepository.addBook(
-                new Book(
-                        "Nineteen eighty four",
-                        "Mary Owen",
-                        1986,
-                        BigInteger.valueOf(Long.parseLong("1676957444"))));
-    }
-
     /**
      * Internal method to run required methods before the application
      * prompt is visible
      */
-    private Application bootstrap() {
+    private void bootstrap() {
         loadBooks();
         registerMenuOptions();
-
-        return this;
     }
 
     private void registerMenuOptions() {
@@ -151,6 +116,6 @@ public class Application {
 
     /** @param args program arguments */
     public static void main(String[] args) {
-        Application.getInstance().bootstrap().run();
+        Application.getInstance().run();
     }
 }
