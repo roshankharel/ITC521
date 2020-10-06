@@ -31,6 +31,6 @@ public class BounceBallControl extends Application {
 
         // Must request focus after the primary stage is displayed
         ballPane.requestFocus();
-
+        ballPane.setStyle("-fx-background-color: white");
     }
 }

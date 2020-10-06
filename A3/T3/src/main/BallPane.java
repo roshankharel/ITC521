@@ -2,7 +2,6 @@ package main;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -16,7 +15,8 @@ public class BallPane extends Pane {
     private final Timeline animation;
 
     public BallPane() {
-        circle.setFill(Color.GREEN); // Set ball color
+        circle.setFill(Color.GRAY); // Set ball color
+
         getChildren().add(circle); // Place a ball into this pane
 
         // Create an animation for moving the ball
@@ -39,10 +39,6 @@ public class BallPane extends Pane {
 
     public void decreaseSpeed() {
         animation.setRate(animation.getRate() > 0 ? (animation.getRate() - 0.1) : 0);
-    }
-
-    public DoubleProperty rateProperty() {
-        return animation.rateProperty();
     }
 
     protected void moveBall() {
