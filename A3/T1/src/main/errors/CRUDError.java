@@ -1,0 +1,14 @@
+package main.errors;
+
+public class CRUDError extends RuntimeException{
+    private final String sql;
+
+    public CRUDError(String message, String sql) {
+        super(message);
+        this.sql = sql;
+    }
+
+    public String getSql() {
+        return sql;
+    }
+}
