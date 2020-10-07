@@ -166,17 +166,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -235,6 +224,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -254,25 +244,29 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="271" y="86" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1601999599211" />
-    <state width="1239" height="166" key="GridCell.Tab.0.bottom" timestamp="1602001080062">
+    <state width="1239" height="166" key="GridCell.Tab.0.bottom" timestamp="1602050952703">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1239" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1602001080062" />
-    <state width="1239" height="166" key="GridCell.Tab.0.center" timestamp="1602001080062">
+    <state width="1239" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1602050952703" />
+    <state width="1239" height="166" key="GridCell.Tab.0.center" timestamp="1602050952703">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1239" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1602001080062" />
-    <state width="1239" height="166" key="GridCell.Tab.0.left" timestamp="1602001080062">
+    <state width="1239" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1602050952703" />
+    <state width="1239" height="166" key="GridCell.Tab.0.left" timestamp="1602050952702">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1239" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1602001080062" />
-    <state width="1239" height="166" key="GridCell.Tab.0.right" timestamp="1602001080062">
+    <state width="1239" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1602050952702" />
+    <state width="1239" height="166" key="GridCell.Tab.0.right" timestamp="1602050952703">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1239" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1602001080062" />
+    <state width="1239" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1602050952703" />
     <state x="172" y="0" key="SettingsEditor" timestamp="1601999605183">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="172" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1601999605183" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1602050768751">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1602050768751" />
   </component>
 </project>

@@ -1,14 +1,29 @@
 package main;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class BounceBallControl extends Application {
     @Override
     public void start(Stage primaryStage) {
         BallPane ballPane = new BallPane(); // Create a ball pane
+        Label label = new Label(String.format("%.2f", ballPane.rateProperty().getValue()));
+        label.setPadding(new Insets(4, 8, 4, 8));
+        label.setStyle("-fx-background-color: blue");
+        label.setTextFill(Color.WHITE);
+        label.setTextAlignment(TextAlignment.CENTER);
+        ballPane.getChildren().add(label);
+
+        ballPane.rateProperty().addListener(
+                (observableValue, oldRate, newRate) ->
+                        label.setText(String.format("%.2f", newRate))
+        );
 
         // Pause and resume animation
         ballPane.setOnMousePressed(e -> ballPane.pause());
