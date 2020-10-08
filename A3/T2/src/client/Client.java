@@ -29,12 +29,12 @@ public class Client extends Application {
     TextField tfLoanAmount = new TextField();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         // create a scene
         Scene scene = new Scene(getPane(), 380, 310);
 
         // set title of the main stage
-        primaryStage.setTitle("Client");
+        primaryStage.setTitle("Loan Client");
         // set the created scene
         primaryStage.setScene(scene);
         // set stage resizable
@@ -45,6 +45,7 @@ public class Client extends Application {
         Platform.runLater(() -> {
             try {
                 connectToServer();
+                result.appendText("Connected to Server.\n");
             } catch (IOException e) {
                 result.appendText(e.getMessage() + "\n");
             }

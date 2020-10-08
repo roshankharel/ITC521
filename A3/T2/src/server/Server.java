@@ -17,6 +17,7 @@ import java.util.Date;
 
 public class Server extends Application {
     TextArea textArea;
+    int numberOfClients = 0;
 
     @Override
     public void start(Stage primaryStage) {
@@ -41,22 +42,31 @@ public class Server extends Application {
                 // Create a server socket
                 ServerSocket serverSocket = new ServerSocket(8080);
 
-                Platform.runLater(() -> textArea.appendText(String.format(
-                        "Server started at %s on port %d\n",
+                Platform.runLater(() -> writeTextArea(String.format(
+                        "Server started at %s on port %d\n\n",
                         new Date(),
                         serverSocket.getLocalPort()
                 )));
 
-                // Listen for a connection request
-                Socket socket = serverSocket.accept();
+                while (true) {
+                    // Listen for a connection request
+                    Socket socket = serverSocket.accept();
 
-                new Thread(new ClintHandler(socket, textArea)).start();
+                    writeTextArea(String.format(
+                            "Client connected: %d\n",
+                            ++numberOfClients
+                    ));
 
-
+                    new Thread(new ClintHandler(socket, this::writeTextArea)).start();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    protected synchronized void writeTextArea(String text) {
+        textArea.appendText(text);
     }
 
 

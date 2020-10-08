@@ -7,14 +7,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.function.Consumer;
 
 public class ClintHandler implements Runnable {
     private final Socket socket;
-    private final TextArea textArea;
+    private final Consumer<String> writeTextArea;
 
-    public ClintHandler(Socket socket, TextArea textArea) {
+    public ClintHandler(Socket socket, Consumer<String> writeTextArea) {
         this.socket = socket;
-        this.textArea = textArea;
+        this.writeTextArea = writeTextArea;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class ClintHandler implements Runnable {
                 outputToClient.writeDouble(totalPayment);
                 outputToClient.flush();
 
-                Platform.runLater(() -> textArea.appendText(String.format(
+                Platform.runLater(() -> writeTextArea.accept(String.format(
                         "Annual Interest Rate: %f\n" +
                                 "Number of Years: %f\n" +
                                 "Loan Amount: %f\n" +
