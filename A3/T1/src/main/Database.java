@@ -23,7 +23,7 @@ public final class Database {
     public Database() throws ClassNotFoundException, SQLException {
         // Load JDBC driver
         Class.forName(Env.JDBC_DRIVER);
-        // Establish a connection
+        // Establish a connectionS
         connection = DriverManager.getConnection(Env.JDBC_DB_URL, getConnectionProperties());
     }
 
@@ -61,8 +61,8 @@ public final class Database {
     private Properties getConnectionProperties() {
 
         Properties properties = new Properties();
-        properties.setProperty("user", Env.DB_USERNAME);
-        properties.setProperty("password", Env.DB_PASSWORD);
+        properties.setProperty("user", Env.DATABASE_USERNAME);
+        properties.setProperty("password", Env.DATABASE_PASSWORD);
         properties.setProperty("profileSQL", "true");
 
         return properties;
