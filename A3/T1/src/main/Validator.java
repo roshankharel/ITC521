@@ -114,62 +114,99 @@ public class Validator {
         }
     }
 
+    /**
+     * Method validates all the form fields based of the current mode of the form
+     *
+     * @param form Form represents a staff information typed by user
+     *
+     * @return A list of errors after validating the form. Empty list indicates the form has no
+     *         error.
+     *
+     * @throws RuntimeException if the form mode is view and the validated field yield's error
+     */
     public static ArrayList<String> validateForm(Form form) {
+        // check if form is in view mode
         if (form.getMode() == Form.Mode.VIEW) {
+            // valid only required fields in view mode
             validateViewForm(form);
             return new ArrayList<>();
         }
 
+        // validate all the fields in insert and update mode
         return validateInsertUpdateForm(form);
     }
 
+    /**
+     * Method validates only the id field of the form
+     *
+     * @param form Form represents a staff information typed by user
+     *
+     * @throws RuntimeException the id is invalid
+     */
     private static void validateViewForm(Form form) {
-        String id = form.getId().getText();
+        String id = form.getIdTextField().getText();
 
         Validator.validateRequired(id, Form.FIELD_ID);
         Validator.validateGreaterThan(id, 1, Form.FIELD_ID);
     }
 
+    /**
+     * Method validates all the fields of the form
+     *
+     * @param form Form represents a staff information typed by user
+     *
+     * @return A list of errors after validating the form. Empty list indicates the form has no
+     *         error.
+     */
     private static ArrayList<String> validateInsertUpdateForm(Form form) {
+        // initialize empty list to hold fields' errors
         ArrayList<String> errors = new ArrayList<>();
-        String fName = form.getFirstName().getText();
-        String mName = form.getMiddleName().getText();
-        String lName = form.getLastName().getText();
-        String address = form.getAddress().getText();
-        String city = form.getCity().getText();
-        String state = form.getState().getText();
-        String telephone = form.getTelephone().getText();
 
+        // get string representation of staff data from the supplied form
+        String fName = form.getFirstNameTextField().getText();
+        String mName = form.getMiddleNameTextField().getText();
+        String lName = form.getLastNameTextField().getText();
+        String address = form.getAddressTextField().getText();
+        String city = form.getCityTextField().getText();
+        String state = form.getStateTextField().getText();
+        String telephone = form.getTelephoneTextField().getText();
+
+        // validate first name and add error if exists
         try {
             validateRequired(fName, Form.FIELD_FIRST_NAME);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
 
+        // validate middle name and add error if exists
         try {
             validateRequired(mName, Form.FIELD_MIDDLE_NAME);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
 
+        // validate last name and add error if exists
         try {
             validateRequired(lName, Form.FIELD_LAST_NAME);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
 
+        // validate address and add error if exists
         try {
             validateRequired(address, Form.FIELD_ADDRESS);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
 
+        // validate city and add error if exists
         try {
             validateRequired(city, Form.FIELD_CITY);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
 
+        // validate state and add error if exists
         try {
             validateRequired(state, Form.FIELD_STATE);
             validateState(state, Form.FIELD_STATE);
@@ -177,6 +214,7 @@ public class Validator {
             errors.add(e.getMessage());
         }
 
+        // validate telephone and add error if exists
         try {
             validateRequired(telephone, Form.FIELD_TELEPHONE);
             validateInteger(telephone, Form.FIELD_TELEPHONE);

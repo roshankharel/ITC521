@@ -1,5 +1,10 @@
 package main.errors;
 
+/**
+ * CRUDError
+ *
+ * A runtime error indicating database Create, Read, Update, or Delete failure
+ */
 public class CRUDError extends RuntimeException{
     private final String sql;
 

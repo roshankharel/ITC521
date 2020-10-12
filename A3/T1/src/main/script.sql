@@ -1,10 +1,14 @@
-CREATE TABLE IF NOT EXISTS `a3t1`.`staff`
+CREATE TABLE `staff`
 (
-    `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `first_name`  VARCHAR(255) NOT NULL,
-    `middle_name` VARCHAR(255) NULL DEFAULT NULL,
-    `last_name`   VARCHAR(255) NOT NULL,
-    `address`     VARCHAR(255) NOT NULL,
-    `state`       VARCHAR(16)  NOT NULL,
+    `id`          int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `first_name`  varchar(255)     NOT NULL,
+    `middle_name` varchar(255) DEFAULT NULL,
+    `last_name`   varchar(255)     NOT NULL,
+    `address`     varchar(255)     NOT NULL,
+    `city`        varchar(255)     NOT NULL,
+    `state`       varchar(16)      NOT NULL,
+    `telephone`   int(11)          NOT NULL,
+
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;

@@ -2,7 +2,14 @@ package main.entities;
 
 import java.math.BigInteger;
 
+/**
+ * Staff
+ * Staff class, a POJO class, represent a staff record in the database
+ *
+ * @author Roshan Kharel
+ */
 public class Staff {
+    // staff attributes
     private Integer id;
     private String firstName;
     private String middleName;
@@ -12,13 +19,15 @@ public class Staff {
     private String city;
     private BigInteger telephone;
 
+    /**
+     * default constructor
+     */
     public Staff() {
     }
 
-    public Staff(Integer id) {
-        this.id = id;
-    }
-
+    /**
+     * overloaded constructor with attributes as parameters
+     */
     public Staff(Integer id, String firstName, String middleName, String lastName,
                  String address, State state, String city, BigInteger telephone) {
         this.id = id;
@@ -95,6 +104,9 @@ public class Staff {
         this.telephone = telephone;
     }
 
+    /**
+     * String representation of the class (for debugging purpose)
+     */
     @Override
     public String toString() {
         return "Staff{" +
