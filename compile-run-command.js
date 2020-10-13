@@ -44,7 +44,7 @@ function walkSync(dir, filelist = []) {
             filelist = walkSync(file, filelist);
         }
 
-        else {
+        else  if(file.endsWith(".java")) {
             filelist.push(file);
         }
     });
